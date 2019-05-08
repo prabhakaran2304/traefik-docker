@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  elasticsearch:
+    image: elasticsearch:7.0.1
+    container_name: elsprd
+    environment:
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+      - "9200:9200"
+    
+  kibana:
+    image: kibana:7.0.1
+    container_name: kibanaprd
+    ports:
+      - "5601:5601"
+    volumes:
+      - '/var/roothome/docpool/esdata:/usr/share/elasticsearch/data'
+    labels:
+      - traefik.enable=true
+      - traefik.backend=elsbckend
+      - traefik.frontend.rule=Host:elsprd.t1.sysadm.com
+
+networks:
+  default:
+    external:
+      name: web
