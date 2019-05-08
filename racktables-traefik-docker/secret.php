@@ -2,7 +2,7 @@
 # This file has been generated automatically by RackTables installer.
 $pdo_dsn = 'mysql:host=mariadbprd;dbname=racktables';
 $db_username = 'rackuser';
-$db_password = 'Reset@123';
+$db_password = 'apple@123';
 
 # Setting MySQL client buffer size may be required to make downloading work for
 # larger files, but it does not work with mysqlnd.
@@ -59,7 +59,7 @@ $require_local_account = TRUE;
 
 //$vm2host_type = 1504;
 //$vm2host_python = "/opt/python27/bin/python2.7";
-//$vm2host_server = "172.25.5.20";
+//$vm2host_server = "";
 //$vm2host_username = "";
 //$vm2host_password = "";
 //$vm2host_hostforvmpy = "../scripts/hostForVm.py";
@@ -70,7 +70,7 @@ $require_local_account = TRUE;
 
 #$FING_ssh_binary = "/usr/bin/ssh";
 #$FING_settings = array(
- #   "10.61.0.0/24" => array(
+ #   "10.0.0.0/24" => array(
   #      "gateway" => "10.61.0.10",
    ##    "sudo" => TRUE,
    # )
