@@ -1,0 +1,40 @@
+version: "3.3"
+services:
+  traefik:
+    image: traefik
+    command: --web \
+      --docker \
+      --docker.swarmmode \
+      --docker.domain=t1.sysadm.com \
+      --docker.watch \
+      --logLevel=DEBUG
+    networks:
+      - traefik-net
+    ports:
+      - 80:80
+      - 8080:8080
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /dev/null:/traefik.toml
+    deploy:
+      placement:
+        constraints: [node.role==manager]
+  portainer:
+    image: portainer
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /home/docker_pool/portainerdata:/data
+    networks:
+      - traefik-net
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+      labels:
+        - traefik.enable=true
+        - traefik.port=9000
+        - traefik.docker.network=mystack_traefik-net
+        - traefik.frontend.rule=Host:portainer.t1.sysadm.com
+
+networks:
+  traefik-net:
+
