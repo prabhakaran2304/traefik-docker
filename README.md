@@ -1,2 +1,2 @@
 # traefik-docker
-Traefik docker in single node - multiple web application 
+Traefik docker swarm in multiple nodes - multiple web application 
